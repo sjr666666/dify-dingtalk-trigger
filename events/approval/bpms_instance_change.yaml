@@ -1,0 +1,49 @@
+identity:
+  name: bpms_instance_change
+  author: sjr666666
+  label:
+    en_US: Approval Instance Changed
+    zh_Hans: 审批实例状态变更
+    ja_JP: 承認インスタンス変更
+
+description:
+  en_US: This event activates when a DingTalk OA approval instance is created, completed, or terminated, providing the instance id, current result, and submitter.
+  zh_Hans: 当钉钉 OA 审批实例创建、结束或终止时激活，提供实例 ID、当前审批结果与发起人。
+  ja_JP: DingTalkのOA承認インスタンスが作成・完了・終了したときにアクティブになり、インスタンスID・結果・申請者を提供します。
+
+parameters: []
+
+output_schema:
+  type: object
+  properties:
+    process_instance_id:
+      type: string
+      description: Approval process instance id
+
+    result:
+      type: string
+      description: Approval result, e.g. agree / refuse / running
+
+    staff_id:
+      type: string
+      description: User id of the approval originator
+
+    corp_id:
+      type: string
+      description: Corporation id
+
+    timestamp:
+      type: string
+      description: Event timestamp (milliseconds since epoch, as sent by DingTalk)
+
+    biz_category:
+      type: string
+      description: Business category of the approval template
+
+    form:
+      type: object
+      description: Decrypted form data (dic_form) when provided by DingTalk
+
+extra:
+  python:
+    source: events/approval/bpms_instance_change.py

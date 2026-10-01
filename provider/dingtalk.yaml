@@ -1,0 +1,73 @@
+identity:
+  author: sjr666666
+  description:
+    en_US: Subscribe to DingTalk Open Platform events (approval changes, organization updates) and trigger Dify workflows when they occur.
+    ja_JP: DingTalkオープンプラットフォームのイベント（承認変更、組織の更新）を購読し、発生時にDifyワークフローを起動します。
+    zh_Hans: 订阅钉钉开放平台事件（审批变更、组织人员变动），在事件发生时触发 Dify 工作流。
+  icon: icon.svg
+  icon_dark: icon-dark.svg
+  label:
+    en_US: DingTalk Triggers
+    ja_JP: DingTalk トリガー
+    zh_Hans: 钉钉触发器
+  name: dingtalk_trigger
+subscription_schema:
+  - name: "dingtalk_app_key"
+    type: "secret-input"
+    required: true
+    help:
+      en_US: The AppKey (also used as the receiver id) of your DingTalk org self-built app, from DingTalk Open Platform > App details > Credentials.
+      ja_JP: DingTalk企業内アプリのAppKey（受信者ID）。DingTalkオープンプラットフォーム > アプリ詳細 > 認証情報から取得してください。
+      zh_Hans: 钉钉企业内部应用的 AppKey（同时用作解密校验的接收者 ID），在钉钉开放平台 > 应用信息 > 凭证与基础信息中获取。
+    label:
+      en_US: "AppKey"
+      ja_JP: "AppKey"
+      zh_Hans: "AppKey"
+    placeholder:
+      en_US: "Please input your DingTalk AppKey"
+      ja_JP: "DingTalkのAppKeyを入力してください"
+      zh_Hans: "请输入钉钉应用的 AppKey"
+    url: https://open.dingtalk.com/document/orgapp/obtain-orgapp-token
+  - name: "dingtalk_token"
+    type: "secret-input"
+    required: true
+    help:
+      en_US: The Token you configured for event subscription in the DingTalk developer console (Event Subscription page).
+      ja_JP: DingTalk開発者コンソールのイベント購読ページで設定したToken。
+      zh_Hans: 在钉钉开发者后台「事件与回调 > 事件订阅」页面自行设置的 Token。
+    label:
+      en_US: "Token"
+      ja_JP: "Token"
+      zh_Hans: "Token"
+    placeholder:
+      en_US: "Please input the Token configured in the DingTalk console"
+      ja_JP: "DingTalkコンソールで設定したTokenを入力してください"
+      zh_Hans: "请输入在钉钉后台设置的事件订阅 Token"
+    url: https://open.dingtalk.com/document/orgapp/receive-events
+  - name: "dingtalk_aes_key"
+    type: "secret-input"
+    required: true
+    help:
+      en_US: The 43-character EncodingAESKey you configured (or let DingTalk generate) for event subscription.
+      ja_JP: イベント購読用に設定（またはDingTalkに生成させた）43文字のEncodingAESKey。
+      zh_Hans: 在钉钉后台为事件订阅设置（或自动生成）的 43 位 EncodingAESKey。
+    label:
+      en_US: "EncodingAESKey"
+      ja_JP: "EncodingAESKey"
+      zh_Hans: "EncodingAESKey"
+    placeholder:
+      en_US: "Please input the 43-character EncodingAESKey"
+      ja_JP: "43文字のEncodingAESKeyを入力してください"
+      zh_Hans: "请输入 43 位 EncodingAESKey"
+    url: https://open.dingtalk.com/document/orgapp/receive-events
+events:
+  # Approval (OA) events
+  - events/approval/bpms_instance_change.yaml
+  - events/approval/bpms_task_change.yaml
+  # Organization / contact events
+  - events/org/user_add_org.yaml
+  - events/org/user_leave_org.yaml
+  - events/org/user_modify_org.yaml
+extra:
+  python:
+    source: provider/dingtalk.py

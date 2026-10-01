@@ -1,0 +1,35 @@
+identity:
+  name: user_leave_org
+  author: sjr666666
+  label:
+    en_US: User Left Organization
+    zh_Hans: 员工离职
+    ja_JP: ユーザー削除
+
+description:
+  en_US: This event activates when one or more users leave the DingTalk organization.
+  zh_Hans: 当有用户离开钉钉组织时激活。
+  ja_JP: ユーザーがDingTalk組織から削除されたときにアクティブになります。
+
+parameters: []
+
+output_schema:
+  type: object
+  properties:
+    user_ids:
+      type: array
+      items:
+        type: string
+      description: User ids of the departed users
+
+    corp_id:
+      type: string
+      description: Corporation id
+
+    timestamp:
+      type: string
+      description: Event timestamp (milliseconds since epoch, as sent by DingTalk)
+
+extra:
+  python:
+    source: events/org/user_leave_org.py

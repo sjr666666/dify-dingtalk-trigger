@@ -1,0 +1,35 @@
+identity:
+  name: user_add_org
+  author: sjr666666
+  label:
+    en_US: User Joined Organization
+    zh_Hans: 新员工加入
+    ja_JP: ユーザー追加
+
+description:
+  en_US: This event activates when one or more users join the DingTalk organization.
+  zh_Hans: 当有用户加入钉钉组织时激活。
+  ja_JP: ユーザーがDingTalk組織に追加されたときにアクティブになります。
+
+parameters: []
+
+output_schema:
+  type: object
+  properties:
+    user_ids:
+      type: array
+      items:
+        type: string
+      description: User ids of the joined users
+
+    corp_id:
+      type: string
+      description: Corporation id
+
+    timestamp:
+      type: string
+      description: Event timestamp (milliseconds since epoch, as sent by DingTalk)
+
+extra:
+  python:
+    source: events/org/user_add_org.py

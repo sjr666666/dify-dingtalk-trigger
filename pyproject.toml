@@ -1,0 +1,15 @@
+[project]
+name = "dingtalk_trigger"
+version = "0.0.1"
+description = "DingTalk trigger plugin for Dify: subscribe to DingTalk Open Platform events"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "dify_plugin>=0.10.2",
+    "pycryptodome>=3.21.0",
+]
+
+# uv run black . -C -l 100 && uv run ruff check --fix
+[dependency-groups]
+dev = []

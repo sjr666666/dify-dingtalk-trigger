@@ -1,0 +1,49 @@
+identity:
+  name: bpms_task_change
+  author: sjr666666
+  label:
+    en_US: Approval Task Changed
+    zh_Hans: 审批任务变更
+    ja_JP: 承認タスク変更
+
+description:
+  en_US: This event activates when a task inside a DingTalk OA approval flow is created, completed, or redirected.
+  zh_Hans: 当钉钉 OA 审批流程中的任务创建、完成或转交时激活。
+  ja_JP: DingTalkのOA承認フロー内のタスクが作成・完了・転送されたときにアクティブになります。
+
+parameters: []
+
+output_schema:
+  type: object
+  properties:
+    process_instance_id:
+      type: string
+      description: Approval process instance id the task belongs to
+
+    task_id:
+      type: string
+      description: Id of the changed task
+
+    activity_id:
+      type: string
+      description: Id of the flow node (activity) the task belongs to
+
+    staff_id:
+      type: string
+      description: User id of the task operator
+
+    result:
+      type: string
+      description: Task operation result
+
+    corp_id:
+      type: string
+      description: Corporation id
+
+    timestamp:
+      type: string
+      description: Event timestamp (milliseconds since epoch, as sent by DingTalk)
+
+extra:
+  python:
+    source: events/approval/bpms_task_change.py
