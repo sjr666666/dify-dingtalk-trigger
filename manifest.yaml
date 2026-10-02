@@ -24,6 +24,9 @@ name: dingtalk_trigger
 plugins:
   triggers:
     - provider/dingtalk.yaml
+privacy: PRIVACY.md
+repo: https://github.com/sjr666666/dify-dingtalk-trigger
+contact: 3283655504@qq.com
 resource:
   memory: 1048576
   permission: {}
